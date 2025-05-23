@@ -2,29 +2,14 @@
 This is an in struction guide to setup this system
 ## Preparation
 
-
-
-### Install the dependencies package
-```aiignore
-sudo apt update -y
-sudo apt install pip -y
-```
-### Download 
-```aiignore
-sudo mkdir /inventory_system && cd /inventory_system && sudo chmod 600 -R /inventory_system
-sudo git clone https://github.com/toysavi/Inventory_System.git . 
-cd /inventory_system
-sudo pip install -r requirements.txt
-```
-
 ### Install MySQL on Ubuntu/Debian (Linux)
 
 ```aiignore
 sudo apt update -y
 sudo apt install mysql-server -y
+sudo apt install -y pip pkg-config default-libmysqlclient-dev pkg-config build-essential python3-dev
 sudo systemctl start mysql
 sudo systemctl enable mysql
-
 ```
 Then secure the installation:
 ```aiignore
@@ -48,6 +33,22 @@ CREATE DATABASE inventorydb;
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 ```
+
+### Install the dependencies package
+```aiignore
+sudo apt update -y
+sudo apt install pip -y
+pip install mysqlclient
+```
+### Download 
+```aiignore
+sudo mkdir /inventory_system && cd /inventory_system && sudo chmod 600 -R /inventory_system
+sudo git clone https://github.com/toysavi/Inventory_System.git . 
+cd /inventory_system
+sudo pip install -r requirements.txt
+```
+
+
 
 ## Installation
 
