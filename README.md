@@ -7,13 +7,14 @@ This is an in struction guide to setup this system
 ### Install the dependencies package
 ```aiignore
 sudo apt update -y
-sudo apt install pip-3 -y
-sudo pip install -r requirements.txt
+sudo apt install pip -y
 ```
 ### Download 
 ```aiignore
 sudo mkdir /inventory_system && sudo chmod 600 /inventory_system
 sudo git clone https://github.com/toysavi/Inventory_System.git /inventory_system 
+cd /inventory_system
+sudo pip install -r requirements.txt
 ```
 
 ### Install MySQL on Ubuntu/Debian (Linux)
