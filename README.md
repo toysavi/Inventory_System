@@ -34,7 +34,13 @@ CREATE DATABASE inventorydb;
 
 ## Installation
 
-### 
-
+### Python Install
+```aiignore
+python run.py
+```
+Expected result:
+```aiignore
+http://127.0.0.1:5000
+```
 
 
