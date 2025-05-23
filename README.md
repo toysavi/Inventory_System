@@ -11,8 +11,9 @@ sudo apt install pip -y
 ```
 ### Download 
 ```aiignore
-sudo mkdir /inventory_system && cd /inventory_system && sudo chmod 600 /inventory_system
+sudo mkdir /inventory_system && cd /inventory_system && sudo chmod 600 -R /inventory_system
 sudo git clone https://github.com/toysavi/Inventory_System.git . 
+cd /inventory_system
 sudo pip install -r requirements.txt
 ```
 
