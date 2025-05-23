@@ -12,8 +12,8 @@ sudo pip install -r requirements.txt
 ```
 ### Download 
 ```aiignore
-sudo mkdir
-sudo git clone 
+sudo mkdir /inventory_system && sudo chmod 600 /inventory_system
+sudo git clone https://github.com/toysavi/Inventory_System.git /inventory_system 
 ```
 
 ### Database configure
