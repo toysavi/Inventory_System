@@ -1,0 +1,68 @@
+name: Python Flask CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: inventorydb
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Wait for MySQL to be ready
+      run: |
+        for i in {1..30}; do
+          if mysql -h 127.0.0.1 -P 3306 -uroot -proot -e "USE inventorydb;" 2>/dev/null; then
+            echo "MySQL is ready!"
+            break
+          fi
+          echo "Waiting for MySQL..."
+          sleep 2
+        done
+
+    - name: Create table
+      run: |
+        mysql -h 127.0.0.1 -P 3306 -uroot -proot inventorydb <<EOF
+        CREATE TABLE IF NOT EXISTS devices (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          hostname VARCHAR(255),
+          ip_address VARCHAR(255),
+          os VARCHAR(100),
+          cpu VARCHAR(255),
+          ram_gb FLOAT,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        EOF
+
+    - name: Run test
+      run: |
+        python test_collector.py

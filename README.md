@@ -16,8 +16,24 @@ sudo mkdir /inventory_system && sudo chmod 600 /inventory_system
 sudo git clone https://github.com/toysavi/Inventory_System.git /inventory_system 
 ```
 
-### Database configure
+### Install MySQL on Ubuntu/Debian (Linux)
 
+```aiignore
+sudo apt update -y
+sudo apt install mysql-server -y
+sudo systemctl start mysql
+sudo systemctl enable mysql
+
+```
+Then secure the installation:
+```aiignore
+sudo mysql_secure_installation
+```
+Log in:
+```aiignore
+sudo mysql -u root -p  
+```
+Run below script to setup database:
 ```aiignore
 CREATE DATABASE inventorydb;
         USE inventorydb;
