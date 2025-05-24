@@ -37,8 +37,10 @@ CREATE DATABASE inventorydb;
 ### Install the dependencies package
 ```aiignore
 sudo apt update -y
-sudo apt install pip -y
+sudo apt install pip python-is-python3 -y
+sudo ln -s /usr/bin/python3 /usr/bin/python
 pip install mysqlclient
+pip install "Flask<2.3"
 ```
 ### Download 
 ```aiignore
